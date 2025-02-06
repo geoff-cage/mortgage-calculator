@@ -12,6 +12,7 @@ public class Main {
         float rate =0;
         int period =0;
         float newRate = 0;
+        int numberOfPayments=0;
         String message = "Principal (100,000 - 1,000,000,0000):";
         Scanner scanner = new Scanner(System.in);
         while(true) {
@@ -38,11 +39,13 @@ public class Main {
         while(true) {
             System.out.print(info);
             period = scanner.nextInt();
-            if(period>0 && period<=30)
+            if(period>0 && period<=30) {
+                numberOfPayments = period * monthInYears;
                 break;
+            }
             System.out.println("Enter value greater than 0 and less than or equal 30");
         }
-        int numberOfPayments = period * monthInYears;
+
 
 
 //        initial method for calculation
