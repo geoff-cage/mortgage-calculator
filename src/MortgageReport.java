@@ -2,8 +2,13 @@ import java.text.NumberFormat;
 import java.util.Locale;
 
 public class MortgageReport {
+
+    private static MortgageCalculator calculator;
+
     public static void printMortgage(float principal, float rate, int period) {
-        float mortgage = MortgageCalculator.calculateMortgage(principal, rate, period);
+        // we create an object (calculator) since the calculateMortgage method is no longer static hence cant be referred by a static method
+        calculator = new MortgageCalculator(principal,rate,period);
+        float mortgage = calculator.calculateMortgage();
         String mortgageFormatted = NumberFormat.getCurrencyInstance(Locale.US).format(mortgage);
         System.out.println();
         System.out.println("MORTGAGE");
@@ -16,7 +21,7 @@ public class MortgageReport {
         System.out.println("PAYMENT SCHEDULE");
         System.out.println("--------");
         for (short month = 1; month <= period * Main.monthInYears; month++) {
-            float loanBalance = MortgageCalculator.calculateLoanBalance(principal, rate, period, month);
+            float loanBalance = calculator.calculateLoanBalance(month);
             System.out.println(NumberFormat.getCurrencyInstance(Locale.US).format(loanBalance));
         }
     }
