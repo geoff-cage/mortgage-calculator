@@ -7,8 +7,11 @@ public class Main {
         float rate = (float) Console.readNumber("Annual Rate:", 1, 30);
         int period= (int) Console.readNumber("period:", 1,30);
 
-        MortgageReport.printMortgage(principal, rate, period);
-        MortgageReport.printPaymentSchedule(period, principal, rate);
+        var calculator = new MortgageCalculator(principal,rate,period);
+
+        var report = new MortgageReport(calculator);
+        report.printMortgage();
+        report.printPaymentSchedule();
     }
 
 }

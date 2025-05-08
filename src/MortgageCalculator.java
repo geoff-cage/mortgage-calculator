@@ -25,4 +25,9 @@ public class MortgageCalculator {
 
         return loanBalance;
     }
+
+    //we create a getter for the period variable
+    public int getPeriod() {
+        return period;
+    }
 }
