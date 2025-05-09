@@ -1,6 +1,4 @@
 public class Main {
-    final static int monthInYears = 12;
-    final static int percentage= 100;
 
     public static void main(String[] args) {
         float principal = (float) Console.readNumber("Principal:",1000,1000000);

@@ -13,7 +13,7 @@ public class MortgageReport {
         System.out.println();
         System.out.println("PAYMENT SCHEDULE");
         System.out.println("--------");
-        for (short month = 1; month <= calculator.getPeriod() * Main.monthInYears; month++) {
+        for (short month = 1; month <= calculator.getPeriod() * MortgageCalculator.monthInYears; month++) {
             float loanBalance = calculator.calculateLoanBalance(month);
             System.out.println(NumberFormat.getCurrencyInstance(Locale.US).format(loanBalance));
         }
