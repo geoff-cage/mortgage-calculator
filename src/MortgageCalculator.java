@@ -12,8 +12,8 @@ public class MortgageCalculator {
     }
 
     public float calculateMortgage() {
-        short numberOfPayments = (short) (period * monthInYears);
-        float newRate = (rate / percentage) / monthInYears;
+        short numberOfPayments = (short) getNumberOfPayments();
+        float newRate = getNewRate();
         float mortgage = (float) (principal * (newRate * (Math.pow((1 + newRate), numberOfPayments))) / (Math.pow((1 + newRate), numberOfPayments) - 1));
         return mortgage;
     }
@@ -21,11 +21,18 @@ public class MortgageCalculator {
     public float calculateLoanBalance(short numberOfPaymentsMade) {
 
         short numberOfPayments = (short) (period * monthInYears);
-        float newRate = (rate / percentage) / monthInYears;
+        float newRate = getNewRate();
         float loanBalance = (float) (principal * (Math.pow(1 + newRate, numberOfPayments) - Math.pow(1 + newRate, numberOfPaymentsMade))
                 / (Math.pow(1 + newRate, numberOfPayments) - 1));
 
         return loanBalance;
+    }
+    private int getNumberOfPayments() {
+        return period * monthInYears;
+    }
+
+    private float getNewRate() {
+        return (rate / percentage) / monthInYears;
     }
 
     //we create a getter for the period variable
