@@ -3,25 +3,26 @@ import java.util.Locale;
 
 public class MortgageReport {
 
+    private final NumberFormat currency;
     private  MortgageCalculator calculator;
 
     public MortgageReport(MortgageCalculator calculator) {
         this.calculator = calculator;
+        currency = NumberFormat.getCurrencyInstance(Locale.US);
     }
 
     public void printPaymentSchedule() {
         System.out.println();
         System.out.println("PAYMENT SCHEDULE");
         System.out.println("--------");
-        for (short month = 1; month <= calculator.getPeriod() * MortgageCalculator.monthInYears; month++) {
-            float loanBalance = calculator.calculateLoanBalance(month);
-            System.out.println(NumberFormat.getCurrencyInstance(Locale.US).format(loanBalance));
-        }
+        for (double loanBalance: calculator.getRemainingBalances())
+            System.out.println(currency.format(loanBalance));
+
     }
 
     public void printMortgage() {
         float mortgage = calculator.calculateMortgage();
-        String mortgageFormatted = NumberFormat.getCurrencyInstance(Locale.US).format(mortgage);
+        String mortgageFormatted = currency.format(mortgage);
         System.out.println();
         System.out.println("MORTGAGE");
         System.out.println("--------");
